@@ -51,8 +51,10 @@ public class Thread4OddEven {
 	 * 
 	 */
 	protected void printOddd() {
-		// TODO Auto-generated method stub
-		
+		synchronized (this) {
+
+		}
+
 	}
 
 	/**
@@ -60,7 +62,7 @@ public class Thread4OddEven {
 	 */
 	protected void printEven() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
