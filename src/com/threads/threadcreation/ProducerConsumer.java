@@ -10,6 +10,22 @@ package com.threads.threadcreation;
  */
 class PNC {
 
+	/**
+	 * 
+	 */
+	public void producer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * 
+	 */
+	public void consumer() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 public class ProducerConsumer {
@@ -25,18 +41,25 @@ public class ProducerConsumer {
 				pnc.producer();
 			}
 		});
-		
-		Thread t2=new Thread(new Runnable() {
-			
+
+		Thread t2 = new Thread(new Runnable() {
+
 			@Override
 			public void run() {
 				pnc.consumer();
-				
+
 			}
 		});
-		
+
 		t1.start();
 		t2.start();
+
+		try {
+			t1.join();
+			t2.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 	}
 
