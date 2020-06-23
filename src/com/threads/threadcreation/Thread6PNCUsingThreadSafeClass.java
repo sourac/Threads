@@ -3,10 +3,9 @@
  */
 package com.threads.threadcreation;
 
+import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-
-import com.DSA2019.Threads.TestC;
 
 /**
  * @author Atul Sharma
@@ -17,7 +16,11 @@ class TestC {
 
 	private static BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(10);
 
-	public void producer() {
+	public void producer() throws InterruptedException {
+		
+		while (true) {
+			queue.put(new Random().nextInt());
+		}
 
 	}
 
