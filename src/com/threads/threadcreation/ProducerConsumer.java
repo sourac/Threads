@@ -11,19 +11,30 @@ package com.threads.threadcreation;
 class PNC {
 
 	/**
+	 * @throws InterruptedException
 	 * 
 	 */
-	public void producer() {
-		// TODO Auto-generated method stub
-		
+	public void producer() throws InterruptedException {
+
+		synchronized (this) {
+			System.out.println("producer started...");
+			Thread.sleep(100);
+			wait();
+			System.out.println("producer resumed...");
+
+		}
+
 	}
 
 	/**
 	 * 
 	 */
 	public void consumer() {
-		// TODO Auto-generated method stub
-		
+		synchronized (this) {
+			System.out.println("consumer started..");
+			notify();
+		}
+
 	}
 
 }
@@ -38,7 +49,11 @@ public class ProducerConsumer {
 
 			@Override
 			public void run() {
-				pnc.producer();
+				try {
+					pnc.producer();
+
+				} catch (InterruptedException e) {
+				}
 			}
 		});
 
