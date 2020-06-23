@@ -39,7 +39,7 @@ class PNC {
 
 }
 
-public class ProducerConsumer {
+public class Thread5ProducerConsumer {
 
 	public static void main(String[] args) {
 
