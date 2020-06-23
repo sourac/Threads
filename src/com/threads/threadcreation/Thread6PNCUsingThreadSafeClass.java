@@ -12,45 +12,47 @@ import java.util.concurrent.BlockingQueue;
  *
  *         https://github.com/sourac
  */
-class TestC {
-
+public class Thread6PNCUsingThreadSafeClass {
+	
 	private static BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(10);
 
-	public void producer() throws InterruptedException {
-		
+	public static void producer() throws InterruptedException {
+
 		while (true) {
 			queue.put(new Random().nextInt());
 		}
 
 	}
 
-	public void consumer() {
-		Integer val=0;
+	public static void consumer() {
+		Integer val = 0;
 		while (true) {
-			if(new Random().nextInt(10)==0) {
+			if (new Random().nextInt(10) == 0) {
 				try {
 					Thread.sleep(1000);
-				} catch (Exception e) {
-					// TODO: handle exception
+				} catch (InterruptedException e) {
 				}
 			}
+
+			try {
+				val = queue.take();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			System.out.println("value taken from queue : " + val + "Queue size : " + queue.size());
 		}
 
 	}
 
-}
-
-public class Thread6PNCUsingThreadSafeClass {
-
 	public static void main(String[] args) {
-		TestC test = new TestC();
 
 		Thread t1 = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				try {
-					test.producer();
+					producer();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -60,13 +62,7 @@ public class Thread6PNCUsingThreadSafeClass {
 
 			@Override
 			public void run() {
-
-				try {
-					test.consumer();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				consumer();
 
 			}
 		});
