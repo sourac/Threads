@@ -25,7 +25,16 @@ class TestC {
 	}
 
 	public void consumer() {
-		// TODO Auto-generated method stub
+		Integer val=0;
+		while (true) {
+			if(new Random().nextInt(10)==0) {
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+		}
 
 	}
 
